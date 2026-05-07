@@ -1,0 +1,9 @@
+interface:
+  display_name: "Wiki Topic"
+  short_description: "Update or create a reusable topic page."
+  brand_color: "#0F766E"
+  default_prompt: "Use $wiki-topic to update or create a topic page in the current LLM wiki."
+
+policy:
+  allow_implicit_invocation: true
+
