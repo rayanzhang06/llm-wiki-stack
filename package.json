@@ -4,7 +4,7 @@
   "description": "Obsidian knowledge base compiler — three-layer architecture (raw → wiki → outputs) with concept evolution, cross-reference integrity, and health checks. Command-driven, AI-maintained, plain Markdown.",
   "license": "MIT",
   "bin": {
-    "llm-wiki-stack": "./bin/setup.sh"
+    "llm-wiki-stack": "bin/setup.sh"
   },
   "files": [
     "bin/",
