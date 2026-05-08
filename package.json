@@ -1,6 +1,6 @@
 {
   "name": "llm-wiki-stack",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Obsidian knowledge base compiler — three-layer architecture (raw → wiki → outputs) with concept evolution, cross-reference integrity, and health checks. Command-driven, AI-maintained, plain Markdown.",
   "license": "MIT",
   "bin": {
