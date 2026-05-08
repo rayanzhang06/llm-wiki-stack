@@ -1,7 +1,26 @@
 #!/usr/bin/env bash
 set -e
 
-SKILLS_SRC="$(cd "$(dirname "$0")/../skills" && pwd)"
+# Resolve the real package root, even when invoked via npx symlink chain.
+# npx creates .bin/<cmd> -> ../<pkg>/bin/setup.sh, so $0 is the symlink.
+resolve_script() {
+  local target="$1"
+  local max_depth=10
+  while [ -L "$target" ] && [ "$max_depth" -gt 0 ]; do
+    local link
+    link="$(readlink "$target")"
+    case "$link" in
+      /*) target="$link" ;;
+      *)  target="$(cd "$(dirname "$target")" && pwd)/$link" ;;
+    esac
+    max_depth=$((max_depth - 1))
+  done
+  echo "$target"
+}
+
+SCRIPT="$(resolve_script "$0")"
+PKG_ROOT="$(cd "$(dirname "$SCRIPT")/.." && pwd)"
+SKILLS_SRC="$PKG_ROOT/skills"
 SKILLS_DST="${HOME}/.claude/skills"
 
 echo "llm-wiki-stack installer"
