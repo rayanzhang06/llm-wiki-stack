@@ -1,64 +1,66 @@
 # llm-wiki-stack
 
+基于 Obsidian 的知识库编译器。将零散的源素材编译为互联的概念网络，由 LLM 驱动编译。
+
 Obsidian-based knowledge base compiler. Turns fragmented source notes into an interconnected concept network, powered by LLM compilation.
 
-## Philosophy
+---
+
+## 核心理念 / Philosophy
+
+大多数笔记系统是**仓库**——你往里存东西。这是一套**编译器**——将原始素材转化为结构化的、可查询的知识。
 
 Most note systems are **warehouses** — you put things in. This is a **compiler** — it transforms raw material into structured, queryable knowledge.
 
 ```
-01 raw/  ──compile──>  02 wiki/  ──dialogue──>  03 outputs/
-(source of truth)      (concept network)          (your opinions)
+01 raw/  ──编译──>  02 wiki/  ──对话──>  03 outputs/
+(不可变源)           (概念网络)            (你的观点)
 ```
 
-## Install
+**知识编译一次，持续沉淀，产生复利效应。**
+Knowledge compiled once, precipitates continuously, compounding over time.
+
+## 安装 / Install
 
 ```bash
 npx llm-wiki-stack
 ```
 
-This copies the skills into `~/.claude/skills/`. Works in Claude Code.
+将 5 个 skill 安装到 `~/.claude/skills/`，Claude Code 中即可使用。
 
-Or clone manually:
+Copies 5 skills into `~/.claude/skills/`. Ready to use in Claude Code.
 
-```bash
-git clone https://github.com/<your-username>/llm-wiki-stack.git
-cp -R llm-wiki-stack/skills/* ~/.claude/skills/
-```
+## 命令 / Commands
 
-## Commands
-
-| Command | Action | When |
+| 命令 | 做什么 | 什么时候用 |
 |---------|--------|------|
-| `/kb-init` | Bootstrap a knowledge base from scratch | Once per vault |
-| `/wiki-compile` | Compile new raw notes into wiki | After collecting source material |
-| `/wiki-topic` | Question-driven opinion formation | When you have a research question |
-| `/wiki-lint` | Health check + structured report | Monthly |
+| `/kb-init` | 从零初始化知识库 | 每个知识库一次 |
+| `/wiki-compile` | 将新 raw 编译进 wiki | 积累素材后 |
+| `/wiki-topic` | 基于问题形成观点 | 有研究问题时 |
+| `/wiki-lint` | 健康检查 + 结构化报告 | 每月 |
 
-## How It Works
+## 怎么用 / How It Works
 
-1. **Collect** — Save articles, thoughts, clippings into `01 raw/` with `status: inbox`
-2. **Compile** — Run `/wiki-compile`; LLM extracts concepts, creates wiki pages, builds cross-references
-3. **Think** — Run `/wiki-topic` with a question; LLM reveals structural relationships between concepts
-4. **Maintain** — Run `/wiki-lint` monthly; LLM surfaces orphan nodes, fragile dependencies, concept evolution
+1. **收素材** — 把文章、想法、剪藏放进 `01 raw/`，标记 `status: inbox`
+2. **编译** — 运行 `/wiki-compile`；LLM 提取概念、创建 wiki 页、建立交叉引用
+3. **思考** — 运行 `/wiki-topic` 提出问题；LLM 揭示概念间的结构化关系
+4. **维护** — 每月运行 `/wiki-lint`；LLM 标记孤岛节点、脆弱依赖、概念演化
 
-## Key Mechanisms
+## 核心机制 / Key Mechanisms
 
-**Concept Independence Test** — Before creating a new wiki page, every candidate concept must pass:
-- Definability: can you clearly state what this concept *is* in 1-2 sentences?
-- Single core: is it one concept, or "A and B" glued together?
-- Multi-source verification: does it appear in at least two different source notes?
+**概念独立性测试** — 创建新 wiki 概念页前，每个候选概念必须通过：
+- 可定义性：能否用一两句话说清"这个概念是什么"？
+- 单一核心：它是一个概念，还是"A 与 B"的组合？
+- 多重验证：是否来自至少两个不同的源笔记？
 
-**Concept Evolution** — No overwrites. Understanding changes are tracked in a versioned timeline. Default behavior is *append*, not replace.
+**概念演化** — 不覆盖历史。每次理解的改变都记录在版本化时间线中。默认行为是**追加**，而非替换。
 
-**Cross-Reference Integrity** — Every claim links to its raw source. Every wiki link is bidirectional. Linked counts are verified on each compile.
+**交叉引用完整性** — 每条陈述链接到 raw 出处。wiki 间双向链接。每次编译校验 linked_count。
 
-## Requirements
+## 限制 / Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or compatible AI coding agent
-- [Obsidian](https://obsidian.md/) (recommended, for graph visualization)
-- Git (for version control)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 或兼容的 AI 编程助手
 
-## License
+## 开源协议 / License
 
 MIT
