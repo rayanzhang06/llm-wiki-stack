@@ -14,5 +14,5 @@ description: Subcommand of the `llm-wiki-stack` knowledge-base management framew
 - This skill is a thin wrapper around `llm-wiki-stack`.
 - First read `../llm-wiki-stack/SKILL.md` and follow the `/wiki-topic` command path only.
 - Treat the user request as an explicit `/wiki-topic` invocation.
-- New topic pages go into `03 outputs/` with `type: output`. Use question-driven flow: user asks a question → LLM provides initial analysis → dialogue → user writes judgment.
+- New topic pages go into `03 outputs/` with `type: output`. Use the four-step protocol defined in the core skill: (1) knowledge inventory from wiki network, (2) synthesis strictly based on inventory, (3) model supplementation for gaps, (4) user dialogue and judgment.
 - Resolve the target topic according to the core skill rules: prefer an explicit page, then an inferred reusable page, and only create a new page when an existing one cannot naturally absorb the content.

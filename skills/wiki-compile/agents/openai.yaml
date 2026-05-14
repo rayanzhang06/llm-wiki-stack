@@ -1,0 +1,8 @@
+interface:
+  display_name: "Wiki Compile"
+  short_description: "Compile raw sources into wiki concepts."
+  brand_color: "#0F766E"
+  default_prompt: "Use $wiki-compile to compile raw source files into the current LLM wiki."
+
+policy:
+  allow_implicit_invocation: true

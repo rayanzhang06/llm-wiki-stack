@@ -1,6 +1,6 @@
 ---
 name: wiki-compile
-description: Subcommand of the `llm-wiki-stack` knowledge-base management framework. Compile user-specified or uncompiled raw files into the wiki layer with concept evolution, metadata completion, and linked_count tracking. Use when the user wants to run `/wiki-compile` or `🔄 编译新素材`.
+description: Subcommand of the `llm-wiki-stack` knowledge-base management framework. Compile one or more raw source files into the Obsidian wiki layer, including metadata completion, concept extraction, backlink repair, raw_sources backfill, and linked_count updates. Use when the user wants to run `/wiki-compile` directly or compile uncompiled raw files.
 ---
 
 # Wiki Compile
@@ -14,4 +14,6 @@ description: Subcommand of the `llm-wiki-stack` knowledge-base management framew
 - This skill is a thin wrapper around `llm-wiki-stack`.
 - First read `../llm-wiki-stack/SKILL.md` and follow the `/wiki-compile` command path only.
 - Treat the user request as an explicit `/wiki-compile` invocation.
-- Run the full compilation pipeline: determine target files (user-specified or auto-detect uncompiled) → filename check → metadata completion → entity extraction → concept independence test → wiki page creation/update with concept evolution → cross-reference integrity check → linked_count maintenance.
+- `/wiki-compile` is the only raw-to-wiki compilation path. Do not use `raw-ingest` or a lightweight ingest shortcut for compilation.
+- If explicit raw paths are provided, compile only those paths. If no paths are provided, follow the core uncompiled-raw detection and confirmation flow.
+- When invoked from `/kb-init`, accept the explicit all-eligible-raw list supplied by initialization and skip only the interactive candidate-selection step; do not skip filename blocking, metadata completion, concept independence tests, backlink repair, `raw_sources` backfill, or `linked_count` updates.
